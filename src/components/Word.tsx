@@ -19,7 +19,7 @@ export default function Word({ item, index, items, add, timeout }: Props) {
     intervalId.current = setInterval(() => {
       if (!locked) {
         if (count != undefined) {
-          setCount((prev) => prev - 1);
+          setCount((prev) => (prev as number) - 1);
         }
       }
     }, 1000);
