@@ -49,13 +49,13 @@ export default function App() {
               title={"ภาษาไทย"}
               items={thaiVocabs}
               add={addThaiVocab}
-              removeCount={5}
+              timeout={5}
             />
             <Section
               title={"ภาษาอังกฤษ"}
               items={engVocabs}
               add={addEngVocab}
-              removeCount={5}
+              timeout={5}
             />
           </div>
         </main>

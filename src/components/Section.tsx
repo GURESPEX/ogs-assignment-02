@@ -9,10 +9,10 @@ type Props = {
   title: string;
   items: Vocab[];
   add: (items: Vocab[], index: number) => void;
-  removeCount?: number;
+  timeout?: number;
 };
 
-export default function Section({ title, items, add, removeCount }: Props) {
+export default function Section({ title, items, add, timeout }: Props) {
   return (
     <div className="flex flex-col flex-1 gap-4 overflow-hidden">
       <div className="flex flex-row h-[64px] justify-center gap-4 p-4 bg-white rounded drop-shadow-sm font-bold">
@@ -26,7 +26,7 @@ export default function Section({ title, items, add, removeCount }: Props) {
             index={index}
             items={items}
             add={add}
-            removeCount={removeCount}
+            timeout={timeout}
           />
         ))}
       </div>
