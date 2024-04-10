@@ -65,7 +65,7 @@ export default function Word({ item, index, items, add, timeout }: Props) {
         {timeout !== undefined && count !== undefined && (
           <div
             style={{
-              backgroundImage: `conic-gradient(#e5e7eb 0deg,#e5e7eb ${
+              backgroundImage: `conic-gradient(rgb(226 232 240) 0deg,rgb(226 232 240) ${
                 (count / timeout) * 360
               }deg, white ${(count / timeout) * 360}deg, white 360deg)`,
             }}
