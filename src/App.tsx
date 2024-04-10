@@ -9,11 +9,7 @@ export default function App() {
   const [thaiVocabs, setThaiVocabs] = useState<Vocab[]>([]);
   const [engVocabs, setEngVocabs] = useState<Vocab[]>([]);
 
-  console.log(vocabs);
-
   function addVocab(items: Vocab[], index: number) {
-    console.log(index);
-
     const item = items[index];
     if (item.lang === "TH") {
       thaiVocabs.push(item);
