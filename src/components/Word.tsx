@@ -1,10 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosLock, IoIosUnlock } from "react-icons/io";
-
-interface Vocab {
-  lang: string;
-  word: string;
-}
+import { Vocab } from "types/vocab";
 
 type Props = {
   item: Vocab;

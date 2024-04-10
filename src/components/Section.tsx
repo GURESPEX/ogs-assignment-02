@@ -1,9 +1,5 @@
 import Word from "./Word";
-
-interface Vocab {
-  lang: string;
-  word: string;
-}
+import { Vocab } from "types/vocab";
 
 type Props = {
   title: string;
