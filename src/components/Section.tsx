@@ -21,7 +21,7 @@ export default function Section({ title, items, add, timeout }: Props) {
       <div className="flex flex-col gap-2 p-4 bg-slate-200 rounded h-full shadow-inner overflow-auto">
         {items.map((item: Vocab, index) => (
           <Word
-            key={index}
+            key={item.word}
             item={item}
             index={index}
             items={items}
