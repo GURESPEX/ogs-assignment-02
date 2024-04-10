@@ -56,29 +56,32 @@ export default function Word({ item, index, items, add, removeCount }: Props) {
         }}
       >
         <div>{item.word}</div>
-        {removeCount !== undefined && (
-          <>
-            <div className="flex flex-row justify-center items-center w-8 aspect-square rounded-full bg-slate-100 text-slate-400">
-              {count}
+        {removeCount !== undefined && count !== undefined && (
+          <div
+            style={{
+              backgroundImage: `conic-gradient(#e5e7eb 0deg,#e5e7eb ${
+                (count / removeCount) * 360
+              }deg, white ${(count / removeCount) * 360}deg, white 360deg)`,
+            }}
+            className={`relative flex flex-row gap-4 w-[48px] h-[48px] justify-center items-center p-4 font-semibold active:bg-slate-200 text-slate-400 active:text-slate-500 hover:cursor-pointer transition rounded-full ${
+              locked ? "bg-slate-100" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setLocked(!locked);
+              setCount(removeCount);
+            }}
+          >
+            <div className="absolute flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px] bg-white rounded-full">
+              {locked ? (
+                <IoIosLock className="flex scale-125" />
+              ) : (
+                <IoIosUnlock className="flex scale-125" />
+              )}
             </div>
-          </>
+          </div>
         )}
       </div>
-      {removeCount !== undefined && (
-        <div
-          className="flex flex-row gap-4 w-[48px] h-[48px] justify-center items-center p-4 bg-slate-300 font-semibold active:bg-slate-400 text-slate-400 active:text-slate-500 hover:cursor-pointer transition rounded-full"
-          onClick={() => {
-            setLocked(!locked);
-            setCount(removeCount);
-          }}
-        >
-          {locked ? (
-            <IoIosLock className="flex scale-125" />
-          ) : (
-            <IoIosUnlock className="flex scale-125" />
-          )}
-        </div>
-      )}
     </div>
   );
 }
