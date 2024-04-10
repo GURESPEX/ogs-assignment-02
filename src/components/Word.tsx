@@ -19,28 +19,35 @@ export default function Word({ item, index, items, add, timeout }: Props) {
   const [locked, setLocked] = useState<boolean>(false);
   const intervalId = useRef<NodeJS.Timeout>();
 
-  useEffect(() => {
-    intervalId.current = setInterval(() => {
-      if (timeout !== undefined) {
-        console.log(count);
-      }
+  // useEffect(() => {
+  //   intervalId.current = setInterval(() => {
+  //     if (!locked) {
+  //       if (count != undefined) {
+  //         if (count > 0) {
+  //           setCount(count - 1);
+  //         } else {
+  //           add(items, index);
+  //           clearInterval(intervalId.current);
+  //         }
+  //       }
+  //     }
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(intervalId.current);
+  //     console.log("Clear");
+  //   };
+  // }, [count]);
 
-      if (!locked) {
-        if (count != undefined) {
-          if (count > 0) {
-            setCount(count - 1);
-          } else {
-            add(items, index);
-            clearInterval(intervalId.current);
-          }
-        }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(intervalId.current);
-      console.log("Clear");
-    };
-  });
+  // useEffect(() => {
+  //   if (!locked) {
+  //     if (count != undefined) {
+  //       if (count <= 0) {
+  //         add(items, index);
+  //         clearInterval(intervalId.current);
+  //       }
+  //     }
+  //   }
+  // }, [count]);
 
   return (
     <div
