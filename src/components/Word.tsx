@@ -19,20 +19,20 @@ export default function Word({ item, index, items, add, removeCount }: Props) {
   const [locked, setLocked] = useState<boolean>(false);
 
   useEffect(() => {
-    const countTimeout = setTimeout(() => {
+    const intervalId = setInterval(() => {
       if (!locked) {
         if (count != undefined) {
           if (count > 0) {
             setCount(count - 1);
           } else {
             add(items, index);
-            clearTimeout(countTimeout);
+            clearInterval(intervalId);
           }
         }
       }
     }, 1000);
     return () => {
-      clearTimeout(countTimeout);
+      clearInterval(intervalId);
     };
   });
 
