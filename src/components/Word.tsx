@@ -19,12 +19,7 @@ export default function Word({ item, index, items, add, timeout }: Props) {
     intervalId.current = setInterval(() => {
       if (!locked) {
         if (count != undefined) {
-          if (count > 0) {
-            setCount(count - 1);
-          } else {
-            add(items, index);
-            clearInterval(intervalId.current);
-          }
+          setCount((prev) => prev - 1);
         }
       }
     }, 1000);
@@ -32,7 +27,7 @@ export default function Word({ item, index, items, add, timeout }: Props) {
       clearInterval(intervalId.current);
       console.log("Clear");
     };
-  }, [count]);
+  }, [locked]);
 
   useEffect(() => {
     if (!locked) {
