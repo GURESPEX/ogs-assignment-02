@@ -1,6 +1,6 @@
 import Section from "@components/Section";
 import { useState } from "react";
-
+import { motion } from "framer-motion";
 import vocabs_json from "@data/word.json";
 import { Vocab } from "types/vocab";
 
@@ -37,27 +37,41 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-row justify-center bg-slate-100 h-screen overflow-hidden">
-      <div className="container flex flex-col bg-slate-100">
-        {/* <nav className="flex flex-row p-4 bg-blue-600 rounded-b">
-          <div className="text-white font-bold text-xl">To Do List</div>
-        </nav> */}
-        <main className="flex flex-col gap-4 p-4 h-full">
-          <div className="flex flex-row gap-4 h-full">
-            <Section title={"คำศัพท์"} items={vocabs} add={addVocab} />
-            <Section
-              title={"ภาษาไทย"}
-              items={thaiVocabs}
-              add={addThaiVocab}
-              timeout={5}
-            />
-            <Section
-              title={"ภาษาอังกฤษ"}
-              items={engVocabs}
-              add={addEngVocab}
-              timeout={5}
-            />
-          </div>
+    <div className="flex flex-row justify-center items-center bg-stone-600 h-screen overflow-hidden">
+      <div className="container flex flex-col h-4/5">
+        <main
+          style={{ filter: "drop-shadow(4px 4px 0 rgba(0, 0, 0, .25))" }}
+          className="flex flex-col gap-4 p-4 h-full"
+        >
+          <motion.div
+            initial={{ scale: 0, rotate: Math.random() * 720 - 360 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="flex flex-col gap-4 h-full"
+          >
+            <div className="flex flex-row gap-4 h-full">
+              <Section
+                gridEnable={true}
+                title={"คำศัพท์"}
+                items={vocabs}
+                add={addVocab}
+              />
+            </div>
+            <div className="flex flex-row gap-4 h-full">
+              <Section
+                title={"ภาษาไทย"}
+                items={thaiVocabs}
+                add={addThaiVocab}
+                timeout={5}
+              />
+              <Section
+                title={"ภาษาอังกฤษ"}
+                items={engVocabs}
+                add={addEngVocab}
+                timeout={5}
+              />
+            </div>
+          </motion.div>
         </main>
       </div>
     </div>

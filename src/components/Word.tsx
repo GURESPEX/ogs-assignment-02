@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { IoIosLock, IoIosUnlock } from "react-icons/io";
 import { Vocab } from "types/vocab";
@@ -25,7 +26,6 @@ export default function Word({ item, index, items, add, timeout }: Props) {
     }, 1000);
     return () => {
       clearInterval(intervalId.current);
-      console.log("Clear");
     };
   }, [locked]);
 
@@ -41,11 +41,16 @@ export default function Word({ item, index, items, add, timeout }: Props) {
   }, [count]);
 
   return (
-    <div
-      className={`flex flex-row items-center gap-4 ${locked && "opacity-50"}`}
+    <motion.div
+      initial={{ scale: 0, rotate: Math.random() * 180 - 90 }}
+      animate={{ scale: 1, rotate: 0 }}
+      transition={{ type: "spring", duration: 0.5 }}
+      exit={{ scale: 0 }}
+      className="relative flex flex-row gap-4"
     >
       <div
-        className={`flex flex-row flex-1 h-[64px] justify-between items-center gap-4 p-4 bg-white rounded drop-shadow-sm font-semibold transition ${
+        style={{ filter: "drop-shadow(2px 2px 0 #000)" }}
+        className={`flex flex-row flex-1 h-[64px] justify-between items-center gap-4 p-4 bg-white border-2 border-black rounded-lg font-semibold ${
           locked
             ? "hover:cursor-not-allowed"
             : "hover:cursor-pointer active:bg-slate-100"
@@ -63,11 +68,11 @@ export default function Word({ item, index, items, add, timeout }: Props) {
         {timeout !== undefined && count !== undefined && (
           <div
             style={{
-              backgroundImage: `conic-gradient(rgb(226 232 240) 0deg,rgb(226 232 240) ${
+              backgroundImage: `conic-gradient(#000 0deg,#000 ${
                 (count / timeout) * 360
               }deg, white ${(count / timeout) * 360}deg, white 360deg)`,
             }}
-            className={`relative flex flex-row gap-4 w-[48px] h-[48px] justify-center items-center p-4 font-semibold active:bg-slate-200 text-slate-400 active:text-slate-500 hover:cursor-pointer transition rounded-full ${
+            className={`relative flex flex-row gap-4 w-[48px] h-[48px] justify-center items-center p-4 font-semibold active:bg-slate-200 hover:cursor-pointer rounded-full ${
               locked ? "bg-slate-100" : ""
             }`}
             onClick={(e) => {
@@ -76,16 +81,16 @@ export default function Word({ item, index, items, add, timeout }: Props) {
               setCount(timeout);
             }}
           >
-            <div className="absolute flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px] bg-white rounded-full">
+            <motion.div className="absolute flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px] bg-white rounded-full">
               {locked ? (
                 <IoIosLock className="flex scale-125" />
               ) : (
                 <IoIosUnlock className="flex scale-125" />
               )}
-            </div>
+            </motion.div>
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
