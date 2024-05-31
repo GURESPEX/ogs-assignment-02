@@ -44,7 +44,10 @@ export default function Word({ item, index, items, add, timeout }: Props) {
     <motion.div
       initial={{ scale: 0, rotate: Math.random() * 180 - 90 }}
       animate={{ scale: 1, rotate: 0 }}
-      transition={{ type: "spring", duration: 0.5 }}
+      transition={{
+        type: "spring",
+        duration: 0.5,
+      }}
       exit={{ scale: 0 }}
       layout
       className="relative flex flex-row gap-4"
